@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'css/home.css') }}">
+  <title>CocktailLib | Accueil</title>
+{% endblock %}
+
+{% block main %}
+  <!-- Header (title) -->
+  <h1 class="header">CocktailLib</h1>
+  
+  <!-- Searchbar (name or ingredient) -->
+  <div class="searchBar roundCorner">
+    <input type="text" oninput="search(this.value)" placeholder="Rechercher" />
+  </div>
+
+  <!-- List of all cocktails -->
+  <div class="cocktails roundCorner">
+    <!-- Loop all cocktails and make a div -->
+    <!-- Divs will be aligned with flexbox -->
+    {% for cocktail in cocktails %}
+      <a href="{{ url_for('cocktail', name = cocktail.name) }}">
+        <div class="cocktail">
+            <!-- Name of the cocktail -->
+            <h1 class="title">{{ cocktail.name }}</h1>
+
+            <!-- Ingredients of the cocktail -->
+            <ul class="ingredients">
+                {% for ingredient in cocktail.ingredients %}
+                    <li class="ingredient">{{ ingredient.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+{% endblock %}
+
+{% block main2 %}
+  <!-- Button to add a new cocktail to the list -->
+  <a href="{{ url_for('newCocktail') }}">
+      <button class="special">
+          Ajouter un cocktail
+      </button>
+  </a>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ url_for('static', filename = 'js/searchBar.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/cocktail.css') }}">
+    <title>CocktailLib | {{ cocktail.name }}</title>
+</head>
+    <body>
+
+        <div class="main">
+            <h1 class="header">{{ cocktail.name }}</h1>
+            <h3 class="subheader">{{ cocktail.drinkType }}</h3>
+
+            <div class="recipe roundCorner">
+                <h3 class="subheader">Ingrédients</h3>
+                <ul>
+                    {% for ingredient in cocktail.ingredients %}
+                        <li>{{ ingredient.quantity }}cl {{ ingredient.name }}</li>
+                    {% endfor %}
+                </ul>
+
+                <h3 class="subheader">Instructions</h3>
+                <p class="instructions">{{ cocktail.instructions }}</p>
+                
+                <button class="home" onclick="goBackHome()">
+                    Revenir à l'accueil
+                </button>
+            </div>
+
+            <a href="{{ url_for('removeCocktail', name = cocktail.name) }}" class="removeCocktail">
+                <p>Supprimer le cocktail</p>
+            </a>
+        </div>
+
+        <div class="footer">
+            Maxew &copy; 2023
+        </div>
+
+    </body>
+
+    <script>
+        function goBackHome() {
+            window.location.href = "{{ url_for('home') }}"
+        }
+    </script>
+</html>

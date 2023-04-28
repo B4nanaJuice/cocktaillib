@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/addCocktail.css') }}">
+    <title>CocktailLib | Nouveau cocktail</title>
+</head>
+    <body>
+        
+        <div class="main">
+
+            <h1 class="header">Nouveau Cocktail</h1>
+
+            <!-- Form to fill to create a new cocktail -->
+            <form method="post" class="newCocktailForm">
+                <!-- Name of the cocktail -->
+                <div class="cocktailName roundCorner">
+                    <input type="text" name="cocktailName" placeholder="Nom du cocktail" required>
+
+                    <!-- Select drink type -->
+                    <select name="drinkType">
+                        <option value="Shot">Shot</option>
+                        <option value="Short drink">Short drink</option>
+                        <option value="Long drink" selected>Long drink</option>
+                    </select>
+                </div>
+
+                <div class="ingredients roundCorner">
+                    <!-- Ingredients of the cocktail -->
+                    <!-- Put by javascript (cuz offset idk why) -->
+
+                    <!-- Button to add an ingredient to the list -->
+                    <button type="button" class="addIngredient" onclick="addIngredient()">+</button>
+                </div>
+
+                <div class="instructions roundCorner">
+                    <h3 class="subheader">Instructions</h3>
+
+                    <!-- Instructions of the cocktail -->
+                    <textarea name="instructions" cols="30" rows="10">Recette à réaliser au shaker.</textarea>
+                </div>
+
+                <!-- Validate the new cocktail -->
+                <input class="addCocktail" type="submit" value="Valider">
+            </form>
+
+        </div>
+
+        <div class="footer">
+            Maxew &copy; 2023
+        </div>
+
+    </body>
+
+    <script src="{{ url_for('static', filename = 'js/addIngredient.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'js/removeIngredient.js') }}"></script>
+</html>

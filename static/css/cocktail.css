@@ -1,0 +1,44 @@
+.recipe {
+    background: var(--dark-gray);
+    padding-top: 75px;
+    padding-bottom: 75px;
+}
+
+ul {
+    margin-bottom: 75px;
+}
+
+li {
+    color: var(--light);
+    font-size: 1.3em;
+    padding: .5em 2em;
+}
+
+.instructions {
+    width: 90%;
+    margin: 0px 5%;
+}
+
+.home {
+    width: 40%;
+    margin: 50px 0px 0px 30%;
+    background: var(--secondary);
+}
+
+.removeCocktail p {
+    padding-top: 5px;
+    float: right;
+    transition: color .3s ease;
+}
+
+.removeCocktail:hover p {
+    color: var(--danger);
+}
+
+@media screen and (max-width: 425px) {
+    .home {
+        width: 80%;
+        margin: 50px 0px 0px 10%;
+    }
+}
+

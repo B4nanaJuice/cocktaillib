@@ -1,0 +1,21 @@
+form {
+    width: 80%;
+    margin: auto;
+}
+
+form div {
+    width: 100%;
+    margin: 25px 0px;
+}
+
+form label {
+    color: var(---gray);
+    margin: 15px 0px 5px 5px;
+    font-size: larger;
+    width: 20%;
+    margin-right: 5%;
+}
+
+form div input {
+    width: 75%;
+}

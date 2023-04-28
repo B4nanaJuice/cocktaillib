@@ -1,0 +1,52 @@
+.searchBar {
+    width: 100%;
+    background: var(--dark-gray);
+    margin: 75px 0px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.searchBar input {
+    width: 90%;
+    margin: 0px 5%;
+    padding: 5px;
+}
+
+.cocktails {
+    background: var(--dark-gray);
+}
+
+.cocktail {
+    padding: 15px 75px;
+}
+
+.cocktails a:not(:first-child) .cocktail {
+    border-top: 1px solid var(--gray);
+}
+
+.cocktails a:not(:last-child) .cocktail {
+    border-bottom: 1px solid var(--gray);
+}
+
+.cocktail .title {
+    transition: margin-left .3s ease;
+}
+
+.cocktail:hover .title {
+    margin-left: 25px;
+}
+
+.ingredients .ingredient:not(:last-child)::after {
+    content: " -";
+}
+
+li {
+    display: inline-block;
+}
+
+@media screen and (max-width: 425px) {
+    .cocktail {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}

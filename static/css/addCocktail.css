@@ -1,0 +1,120 @@
+.cocktailName, .instructions {
+    width: 100%;
+    background: var(--dark-gray);
+    margin: 75px 0px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.cocktailName input {
+    width: 90%;
+    padding: 5px;
+    margin: 0px 5%;
+}
+
+.cocktailName select {
+    width: 90%;
+    margin-top: 25px;
+    padding: 10px;
+    margin: 0px 5%;
+    font-size: 1em;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid var(--gray);
+}
+
+.cocktailName select:hover {
+    cursor: pointer;
+}
+
+.cocktailName select * {
+    background: transparent;
+    padding: 10px;
+    font-size: 1em;
+    outline: none;
+    border: none;
+}
+
+.ingredients {
+    background: var(--dark-gray);
+    margin-bottom: 50px;
+}
+
+.ingredient {
+    padding: 15px 75px;
+    border-bottom: 1px solid var(--gray);
+}
+
+.ingredient:not(:first-child) {
+    border-top: 1px solid var(--gray);
+}
+
+.ingredient input {
+    width: 40%;
+    margin: 15px 1%;
+}
+
+.ingredient button {
+    background: transparent;
+    color: var(--light-gray);
+    margin-left: 25px;
+    border: 2px solid var(--gray);
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+}
+
+.ingredients .addIngredient {
+    width: 100%;
+    background: transparent;
+    font-size: 2em;
+    color: var(--light-gray);
+    border-top: 1px solid var(--gray);
+}
+
+.instructions textarea {
+    width: 90%;
+    max-width: 90%;
+    min-width: 90%;
+    background: transparent;
+    outline: none;
+    padding: 15px;
+    margin: 0px 5%;
+    border: 2px solid var(--gray);
+    border-radius: 10px;
+}
+
+.addCocktail {
+    border-radius: 10px;
+    outline: none;
+    padding: 15px;
+    font-size: 18px;
+    color: var(--light);
+    width: 60%;
+    margin-left: 20%;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    border: none;
+    margin-bottom: 150px;
+}
+
+.addCocktail:hover {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 425px) {
+
+    .ingredient {
+        padding: 15px 0px;
+    }
+
+    .ingredient input {
+        width: 40%;
+        margin: 15px 5%;
+    }
+
+    .ingredient input:not(:first-child) {
+        width: 20%;
+        margin: 15px 1%;
+    }
+}

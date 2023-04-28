@@ -1,0 +1,13 @@
+button {
+    background: var(--dark-gray);
+    width: 40%;
+    margin-left: 30%;
+    margin-top: 75px;
+}
+
+@media screen and (max-width: 425px) {
+    button {
+        width: 80%;
+        margin-left: 10%;
+    }
+}
