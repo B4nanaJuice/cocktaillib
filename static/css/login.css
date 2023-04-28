@@ -14,8 +14,27 @@ form label {
     font-size: larger;
     width: 20%;
     margin-right: 5%;
+    display: inline-block;
+    text-align: right;
 }
 
 form div input {
-    width: 75%;
+    width: 70%;
+}
+
+.checks {
+    margin-left: 20%;
+}
+
+.checks p {
+    margin: 15px 0px;
+}
+
+.checks ul {
+    margin-left: 15px;
+}
+
+.checks ul li {
+    margin: 2px 0px;
+    transition: color .5s ease;
 }

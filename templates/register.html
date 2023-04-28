@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'css/login.css') }}">
+  <title>CocktailLib | Register</title>
+{% endblock %}
+
+{% block main %}
+  <!-- Header (title) -->
+  <h1 class="header">Login</h1>
+
+  <div class="roundCorner darkBackground">
+    <!-- Login form -->
+    <form method="post">
+      <div>
+        <label for="name">Username</label>
+        <input type="text" name="name" required>
+      </div>
+
+      <div>
+        <label for="mail">Mail</label>
+        <input type="email" name="mail" required>
+      </div>
+
+      <div>
+        <label for="name">Password</label>
+        <input type="password" name="password" oninput="check()" required>
+      </div>
+
+      <div class="checks">
+        <p>Your password must:</p>
+        <ul>
+            <li class="has-uppercase">Contain 1 uppercase</li>
+            <li class="has-lowercase">Contain 1 lowercase</li>
+            <li class="has-number">Contain 1 number</li>
+            <li class="has-special-char">Contain 1 special character</li>
+            <li class="length">Be 8 characters long</li>
+        </ul>
+      </div>
+
+      <div>
+        <label for="password-repeat">Password (repeat)</label>
+        <input type="password" name="password-repeat" oninput="check()" required>
+      </div>
+
+      <div class="checks">
+        <ul>
+            <li class="match">Both passwords must match</li>
+        </ul>
+      </div>
+
+      <input type="submit">
+    </form>
+  </div>
+{% endblock %}
+
+{% block main2 %}
+  <!-- Button to go back to the home page -->
+  <a href="{{ url_for('home') }}">
+    <button class="special">
+        Retour à l'accueil
+    </button>
+  </a>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ url_for('static', filename = 'js/passwordCheck.js') }}"></script>
+{% endblock %}

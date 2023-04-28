@@ -154,6 +154,17 @@ button:hover {
 }
 
 /* Responsive */
+/* Tablet view */
+@media screen and (max-width: 728px) {
+    .main {
+        width: 90%;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
+
+/* Phone view */
 @media screen and (max-width: 425px) {
     .main {
         width: 100%;
