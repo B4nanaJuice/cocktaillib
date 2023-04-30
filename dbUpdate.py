@@ -21,6 +21,3 @@ con.commit()
 
 res = cur.execute("SELECT * FROM users")
 print(res.fetchall())
-
-# close connection with db
-con.close()
