@@ -10,6 +10,9 @@ function check() {
     password = document.getElementsByName("password")[0].value
     password_repeat = document.getElementsByName("password-repeat")[0].value
 
+    // Get submit button
+    submit = document.getElementsByName("submit")[0]
+
     console.log(password_repeat)
 
     checks = [
@@ -32,4 +35,15 @@ function check() {
     for (check_index = 0; check_index < checks.length; check_index++) {
         checks[check_index].style.color = conditions[check_index] ? getComputedStyle(document.documentElement).getPropertyValue("--secondary") : getComputedStyle(document.documentElement).getPropertyValue("--light-gray")
     }
+
+    // If all conditions are met: enable the button
+    // Else: disable the button
+    if (conditions.includes(false)) {
+        submit.classList.add("disabled")
+    } else {
+        submit.classList.remove("disabled")
+    }
+    
+    submit.disabled = conditions.includes(false) ? true : false
+
 }

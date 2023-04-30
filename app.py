@@ -3,6 +3,7 @@ from flask import Flask, redirect, render_template, request, url_for, abort, ses
 from markupsafe import escape
 import json
 import sqlite3
+import hashlib
 
 from classes.Cocktail import Cocktail
 from classes.Ingredient import Ingredient
@@ -128,27 +129,64 @@ def login():
 
         # open a session witht he username
 
-        return redirect(url_for('login'))
-
-        
+        return redirect(url_for('login')) 
 
 @app.route("/register", methods = ['GET', 'POST'])
 def register():
     # see the register form
     if request.method == 'GET':
-        return render_template("register.html", **locals())
+        return render_template("register.html")
 
     # if the form is sent, get inputs information
     elif request.method == 'POST':
+
         # get inputs information
-        print('')
+        username: str = request.form["name"]
+        mail: str = request.form["mail"]
+        password: str = request.form["password"]
+        password_repeat: str = request.form["password-repeat"]
 
-        # check if username is available
+        print(username, mail, password)
 
-        # check if password is correct
+        # check if passwords are correct
 
-        # put username and hashed password in the user's db
+        # connect to database
+        con = sqlite3.connect("users.db")
+        cur = con.cursor()
+
+        # check if username is available (get from table, if exists, then not available)
+        res = cur.execute("SELECT * FROM users WHERE id = ? COLLATE NOCASE", [username])
+        if (res.fetchone() is not None):
+            return render_template("register.html", error = "The username is already used.")
+        
+        # check if username is "correct"
+        res = cur.execute("SELECT * FROM users WHERE id = 'users' COLLATE NOCASE")
+        if (res.fetchone() is not None):
+            return render_template("register.html", error = "You can't use that username.")
+
+        # check if mail is available
+        res = cur.execute("SELECT * FROM users WHERE mail = ? COLLATE NOCASE", [mail])
+        if (res.fetchone() is not None):
+            return render_template("register.html", error = "The mail is already used.")
+
+        # SEE TO SEND A CONFIRMATION EMAIL
+        # MOVE ALL BELLOW TO NEW URL /confirm/<string:token>
+        # Set the information into a temp db and if confirmed: move from the temp db to the users db
+
+        # hash the password
+        m: hashlib._Hash = hashlib.sha256()
+        m.update(password.encode())
+        password = m.hexdigest()
+
+        # put the name, mail and hashed password into the database
+        cur.execute("INSERT INTO users VALUES (?, ?, ?)", (username, mail, password))
 
         # create a new table for the user
+
+        # save the database
+        con.commit()
+        con.close()
+
+        return render_template("login.html", info = f"A mail have been sent the following email: {mail}")
 
 app.run(host = '0.0.0.0', port = 5500, debug = True)

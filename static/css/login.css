@@ -38,3 +38,11 @@ form div input {
     margin: 2px 0px;
     transition: color .5s ease;
 }
+
+.header {
+    margin-bottom: 75px;
+}
+
+.roundCorner {
+    padding-top: 35px;
+}

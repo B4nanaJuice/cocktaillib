@@ -12,7 +12,7 @@
 
     --primary: rgb(34, 34, 190);
     --secondary: rgb(5, 160, 13);
-    --danger: #af2323;
+    --danger: #cf4747;
 
     --title: 'Alegreya Sans SC', sans-serif;
     --text: 'Nobile', sans-serif;
@@ -79,10 +79,6 @@ input[type = "submit"] {
     margin-bottom: 20px;
 }
 
-input[type = "submit"]:hover {
-    cursor: pointer;
-}
-
 input:focus {
     border-bottom: 2px solid var(--secondary);
 }
@@ -143,6 +139,35 @@ button:hover {
 
 .special:hover {
     background-position: 100%;
+}
+
+.disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.error {
+    width: 90%;
+    margin: auto;
+    background: var(--danger);
+    border-radius: 10px;
+}
+
+.error * {
+    display: inline-block;
+    align-items: center;
+}
+
+.error button {
+    margin-left: 10px;
+    background: transparent;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 800;
+}
+
+.error p {
+    color: var(--light);
+    padding: 25px;
 }
 
 .footer {
