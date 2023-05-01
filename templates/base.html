@@ -16,7 +16,12 @@
     {% block main2 %} {% endblock %}
 
     <div class="footer">
-      Maxew &copy; 2023
+      - Maxew &copy; 2023 - 
+
+      {% if session['name'] and session['name'] != "" %}
+        <a href="{{ url_for('lougout') }}">Logout</a>
+      {% endif %}
+
     </div>
     
   </body>
