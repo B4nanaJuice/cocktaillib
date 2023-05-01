@@ -11,10 +11,10 @@
 
   <div class="roundCorner darkBackground">
     <!-- If an error needs to be shown, it will be shown above the form -->
-    {% if error and error != "" %}
+    {% if session['error'] and session['error'] != "" %}
       <div class="error">
         <button class="removeError" onclick="removeError(this)">X</button>
-        <p class="message">{{ error }}</p>
+        <p class="message">{{ session['error'] }}</p>
       </div>
     {% endif %}
 

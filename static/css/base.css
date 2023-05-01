@@ -170,6 +170,30 @@ button:hover {
     padding: 25px;
 }
 
+.info {
+    width: 90%;
+    margin: auto;
+    background: var(--secondary);
+    border-radius: 10px;
+}
+
+.info * {
+    display: inline-block;
+    align-items: center;
+}
+
+.info button {
+    margin-left: 10px;
+    background: transparent;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 800;
+}
+
+.info p {
+    color: var(--light);
+    padding: 25px;
+}
+
 .footer {
     width: 100%;
     text-align: center;
