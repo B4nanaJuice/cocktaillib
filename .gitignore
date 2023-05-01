@@ -1,6 +1,4 @@
 test.*
 dbUpdate.py
-lists/
 users.db
 someHelp.md
-.gitignore
