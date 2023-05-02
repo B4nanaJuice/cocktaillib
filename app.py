@@ -11,11 +11,13 @@ from classes.Ingredient import Ingredient
 import routes.home
 import routes.auth
 
+import config
+
 app = Flask(__name__)
 
 # import os
 # os.urandom(64)
-app.secret_key = b'C\x9dt.\x9d\x8b\x05\xdfC\x8en \x7f\xdd\x15\xf7t\xde\xdc\xb6\xdf\xcc\x1f\xb0\xfa\xb4\xea1\x0cE(\xfe\xef@qL\x1cOA\xb8\xa1H\x9c\x057E\x0f@L\x82\x84\xfa\x98):\xbeo\x90\x10\xb9\x1e\xf2T\xd0'
+app.secret_key = config.SECRET_KEY
 
 @app.before_request
 def before_request():

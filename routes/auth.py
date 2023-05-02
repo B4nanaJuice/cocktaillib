@@ -134,8 +134,6 @@ def register():
             return render_template("auth/register.html", **locals())
 
         # SEE TO SEND A CONFIRMATION EMAIL
-        # MOVE ALL BELLOW TO NEW URL /confirm/<string:token>
-        # Set the information into a temp db and if confirmed: move from the temp db to the users db
 
         # hash the password
         m: hashlib._Hash = hashlib.sha256()
