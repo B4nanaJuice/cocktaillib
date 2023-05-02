@@ -75,8 +75,6 @@ def register():
 
     # see the register form
     if request.method == 'GET':
-        session.pop('info', default = None)
-        session.pop('error', default = None)
         return render_template("auth/register.html")
 
     # if the form is sent, get inputs information
@@ -89,6 +87,18 @@ def register():
         password_repeat: str = request.form["password-repeat"]
 
         # check if passwords are correct
+        conditions: list[bool] = [
+            any(x.isupper() for x in password),
+            any(x.islower() for x in password),
+            any(x.isdigit() for x in password),
+            any(not x.isalnum() for x in password),
+            len(password) >= 8,
+            password == password_repeat
+        ]
+
+        if False in conditions:
+            session['error'] = "Your password doesn't fill the requirements."
+            return render_template("auth/register.html", **locals())
 
         # connect to database
         con = sqlite3.connect("users.db")
@@ -160,15 +170,11 @@ def confirm(token: str):
     res = cur.execute("SELECT * FROM temp WHERE id = ?", [token])
     user = res.fetchone()
 
-    print(user)
-    print(token)
     # if the temp user is not found, return the login page and an error saying the token is unknown
     if user is None:
         session.pop('info', default = None)
         session["error"] = "The given token is unknown."
         return redirect(url_for("login"))
-    
-    print("hmmm")
 
     # if found: put the account in the users table
     cur.execute("INSERT INTO users VALUES (?, ?, ?)", user[1:])
