@@ -1,6 +1,6 @@
 from flask import request, session, redirect, url_for, render_template
-import sqlite3
-import hashlib
+import sqlite3, hashlib
+import threading, time
 
 def login():
     
@@ -152,14 +152,35 @@ def register():
         # create a new table for the user
         print(f"http://localhost:5500/confirm/{hashed_username}")
 
+        # make the url not usable after a delay
+        threading.Thread(target = delete_temp_user, args = (hashed_username, )).start()
+
         # save the database
         con.commit()
         con.close()
 
         # redirect to the login page, saying that a mail has been sent to confirm the account
-        session['info'] = f"A mail have been sent the following email: {mail}"
+        session['info'] = f"A mail have been sent the following email: {mail}. You have 4 hours to confirm your mail."
         return render_template("auth/login.html", **locals())
     
+def delete_temp_user(id: str):
+
+    # the url will be usable for 4 hours
+    time.sleep(14400)
+
+    # connect to the database
+    con = sqlite3.connect("users.db")
+    cur = con.cursor()
+
+    # delete the temp user from the temp table
+    cur.execute("DELETE FROM temp WHERE id = ?", [id])
+
+    # commit changes
+    con.commit()
+
+    # close the connection
+    con.close()
+
 def confirm(token: str):
 
     # connect to the database

@@ -1,4 +1,6 @@
 test.*
 dbUpdate.py
 users.db
+cocktails.db
+cocktails.json
 someHelp.md
