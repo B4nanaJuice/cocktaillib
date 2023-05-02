@@ -10,7 +10,26 @@
   <body>
     
     <div class="main">
-        {% block main %} {% endblock %}
+
+      <div class="notifications">
+        <!-- If an info needs to be shown, it will be above the page content -->
+        {% if 'info' in session %}
+          <div class="info">
+            <button class="removeNotification" onclick="removeNotification(this)">X</button>
+            <p class="message">{{ session['info'] }}</p>
+          </div>
+        {% endif %}
+
+        <!-- If an error needs to be shown, it will be shown above the page content -->
+        {% if session['error'] and session['error'] != "" %}
+          <div class="error">
+            <button class="removeNotification" onclick="removeNotification(this)">X</button>
+            <p class="message">{{ session['error'] }}</p>
+          </div>
+        {% endif %}
+      </div>
+
+      {% block main %} {% endblock %}
     </div>
 
     {% block main2 %} {% endblock %}
@@ -25,5 +44,6 @@
     </div>
     
   </body>
+  <script src="{{ url_for('static', filename = 'js/removeNotification.js') }}"></script>
   {% block scripts %} {% endblock %}
 </html>

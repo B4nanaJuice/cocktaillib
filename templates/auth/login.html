@@ -10,21 +10,6 @@
   <h1 class="header">Login</h1>
 
   <div class="roundCorner darkBackground">
-    <!-- If an error needs to be shown, it will be shown above the form -->
-    {% if session['error'] and session['error'] != "" %}
-      <div class="error">
-        <button class="removeError" onclick="removeError(this)">X</button>
-        <p class="message">{{ session['error'] }}</p>
-      </div>
-    {% endif %}
-    
-    <!-- If an error needs to be shown, it will be shown above the form -->
-    {% if session['info'] and session['info'] != "" %}
-      <div class="info">
-        <button class="removeInfo" onclick="removeError(this)">X</button>
-        <p class="message">{{ session['info'] }}</p>
-      </div>
-    {% endif %}
 
     <!-- Login form -->
     <form method="post">

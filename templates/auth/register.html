@@ -10,14 +10,7 @@
   <h1 class="header">Register</h1>
 
   <div class="roundCorner darkBackground">
-    <!-- If an error needs to be shown, it will be shown above the form -->
-    {% if session['error'] and session['error'] != "" %}
-      <div class="error">
-        <button class="removeError" onclick="removeError(this)">X</button>
-        <p class="message">{{ session['error'] }}</p>
-      </div>
-    {% endif %}
-
+    
     <!-- Login form -->
     <form method="post">
         <!-- Username field -->
@@ -80,5 +73,4 @@
 
 {% block scripts %}
   <script src="{{ url_for('static', filename = 'js/passwordCheck.js') }}"></script>
-  <script src="{{ url_for('static', filename = 'js/removeError.js') }}"></script>
 {% endblock %}

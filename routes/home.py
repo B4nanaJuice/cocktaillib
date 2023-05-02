@@ -2,12 +2,6 @@ from flask import render_template, session
 import json
 
 def home():
-
-    if 'info' in session:
-        print("df")
-
-    if 'name' in session:
-        print("coucou")
     
     # Get all cocktails from the json file
     file = open("cocktails.json")

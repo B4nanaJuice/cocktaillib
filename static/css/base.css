@@ -145,53 +145,47 @@ button:hover {
     opacity: .5;
     cursor: not-allowed;
 }
+.notifications {
+    position: fixed;
+    width: 50%;
+    left: 25%;
+}
 
-.error {
+.info, .error {
     width: 90%;
     margin: auto;
-    background: var(--danger);
     border-radius: 10px;
+    margin-top: 10px;
+    transition: transform .3s ease;
 }
 
-.error * {
-    display: inline-block;
-    align-items: center;
+.info:hover, .error:hover {
+    transform: scale(1.1);
 }
 
-.error button {
-    margin-left: 10px;
-    background: transparent;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: 800;
-}
-
-.error p {
-    color: var(--light);
-    padding: 25px;
+.error {
+    background: var(--danger);
 }
 
 .info {
-    width: 90%;
-    margin: auto;
     background: var(--secondary);
-    border-radius: 10px;
 }
 
-.info * {
+.info *, .error * {
     display: inline-block;
     align-items: center;
 }
 
-.info button {
+.message {
+    color: var(--light);
+    padding: 25px;
+}
+
+.removeNotification {
     margin-left: 10px;
     background: transparent;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 800;
-}
-
-.info p {
-    color: var(--light);
-    padding: 25px;
 }
 
 .footer {

@@ -14,7 +14,7 @@ def login():
         
         # else: show the login form
         else:
-            return render_template("login.html", **locals())
+            return render_template("auth/login.html", **locals())
 
     # if the form is sent, get inputs information
     elif request.method == 'POST':
@@ -52,7 +52,7 @@ def login():
 
         # redirect to home page (not for the moment)
         session['info'] = "You successfully connected !"
-        return redirect(url_for('login')) 
+        return redirect(url_for('home')) 
     
 def lougout():
 
@@ -69,11 +69,15 @@ def lougout():
 
 def register():
 
+    # if the user is already connected, go back to home page
+    if 'name' in session:
+        return redirect(url_for('home'))
+
     # see the register form
     if request.method == 'GET':
         session.pop('info', default = None)
         session.pop('error', default = None)
-        return render_template("register.html")
+        return render_template("auth/register.html")
 
     # if the form is sent, get inputs information
     elif request.method == 'POST':
@@ -83,8 +87,6 @@ def register():
         mail: str = request.form["mail"]
         password: str = request.form["password"]
         password_repeat: str = request.form["password-repeat"]
-
-        print(username, mail, password)
 
         # check if passwords are correct
 
@@ -96,30 +98,30 @@ def register():
         res = cur.execute("SELECT * FROM users WHERE id = ? COLLATE NOCASE", [username])
         if (res.fetchone() is not None):
             session['error'] = "The username is already used."
-            return render_template("register.html", **locals())
+            return render_template("auth/register.html", **locals())
         
         # check if also available in the temp database
         res = cur.execute("SELECT * FROM temp WHERE name = ? COLLATE NOCASE", [username])
         if (res.fetchone() is not None):
             session['error'] = "The username is not available for the moment."
-            return render_template("register.html", **locals())
+            return render_template("auth/register.html", **locals())
         
         # check if username is "correct"
         if username in ["users", "temp"]:
             session['error'] = "You can't use that username."
-            return render_template("register.html", **locals())
+            return render_template("auth/register.html", **locals())
 
         # check if mail is available
         res = cur.execute("SELECT * FROM users WHERE mail = ? COLLATE NOCASE", [mail])
         if (res.fetchone() is not None):
             session['error'] = "The mail is already used."
-            return render_template("register.html", **locals())
+            return render_template("auth/register.html", **locals())
         
         # check if also available in the temp database
         res = cur.execute("SELECT * FROM temp WHERE mail = ? COLLATE NOCASE", [mail])
         if (res.fetchone() is not None):
             session['error'] = "The mail is not available for the moment."
-            return render_template("register.html", **locals())
+            return render_template("auth/register.html", **locals())
 
         # SEE TO SEND A CONFIRMATION EMAIL
         # MOVE ALL BELLOW TO NEW URL /confirm/<string:token>
@@ -146,7 +148,7 @@ def register():
 
         # redirect to the login page, saying that a mail has been sent to confirm the account
         session['info'] = f"A mail have been sent the following email: {mail}"
-        return render_template("login.html", **locals())
+        return render_template("auth/login.html", **locals())
     
 def confirm(token: str):
 

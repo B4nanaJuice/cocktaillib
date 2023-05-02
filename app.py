@@ -17,6 +17,20 @@ app = Flask(__name__)
 # os.urandom(64)
 app.secret_key = b'C\x9dt.\x9d\x8b\x05\xdfC\x8en \x7f\xdd\x15\xf7t\xde\xdc\xb6\xdf\xcc\x1f\xb0\xfa\xb4\xea1\x0cE(\xfe\xef@qL\x1cOA\xb8\xa1H\x9c\x057E\x0f@L\x82\x84\xfa\x98):\xbeo\x90\x10\xb9\x1e\xf2T\xd0'
 
+@app.before_request
+def before_request():
+    if 'info' in session:
+        if session['info'][-1] != '\n':
+            session['info'] += '\n'
+        else:
+            session.pop('info', default = None)
+
+    if 'error' in session:
+        if session['error'][-1] != '\n':
+            session['error'] += '\n'
+        else:
+            session.pop('error', default = None)
+
 app.add_url_rule("/", view_func = routes.home.home)
 
 app.add_url_rule("/login", view_func = routes.auth.login, methods = ['GET', 'POST'])
