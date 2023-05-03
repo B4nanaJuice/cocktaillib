@@ -15,8 +15,11 @@ def send_mail(to: list[str], subject: str, content: str) -> None:
         smtp.login(config.MAIL, config.MAIL_PASSWORD)
         smtp.send_message(message)
 
-def generate_template() -> str:
-    with codecs.open("templates/mails/confirm_mail.html", 'r') as template:
-        return template.read().replace("{{ content }}", "Coucou toi")
+def generate_template(file: str, variables: dict[str: str]) -> str:
+    resp: str
+    with codecs.open(f"templates/mails/{file}.html", 'r') as template:
+        resp = template.read()
+        for k,v in variables.items():
+            resp = resp.replace(f"{'{{'} {k} {'}}'}", v)
 
-send_mail(["griesmaxime2@gmail.com"], "tuyt", generate_template())
+        return resp
