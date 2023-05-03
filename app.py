@@ -21,6 +21,8 @@ app.secret_key = config.SECRET_KEY
 
 @app.before_request
 def before_request():
+    session['info'] = "A mail have been sent the following email: to.your.mail@messagerie.com. You have 4 hours to confirm your mail."
+    
     if 'info' in session:
         if session['info'][-1] != '\n':
             session['info'] += '\n'
