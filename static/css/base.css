@@ -157,6 +157,7 @@ button:hover {
     border-radius: 10px;
     margin-top: 10px;
     transition: transform .3s ease;
+    display: flex;
 }
 
 .info:hover, .error:hover {
@@ -169,11 +170,6 @@ button:hover {
 
 .info {
     background: var(--secondary);
-}
-
-.info *, .error * {
-    display: inline-block;
-    align-items: center;
 }
 
 .message {
