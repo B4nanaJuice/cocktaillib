@@ -1,16 +1,35 @@
 <!DOCTYPE html>
 <html>
-    <body>
-        <h1>
-            {{ title }}
+    <body style="padding: 0; margin: 0; background: #171722;">
+        <h1 style="margin: 0; padding: 100px 0px 100px 100px; color: #FCFFFF; width: 55%; margin: auto; letter-spacing: 12px; font-size: 40px;">
+            Mail Confirmation
         </h1>
 
-        <div>
-            {{ content }}
+        <div style="width: 55%; margin: auto; background: #24273D; padding: 40px 100px; box-sizing: border-box; border-radius: 10px;">
+            <h3 style="color: #FCFFFF; letter-spacing: 6px; font-size: 30px;">
+                Bip boop !
+            </h3>
+            <p style="color: #767C9B;">
+                You recently created your account on b4nanajuice.pythonanywhere.com and thank you for that.
+            </p>
+            <p style="color: #767C9B;">
+                To confirm your account creation, please click on the button, it will redirect you on the login page where you will be able to save your first cocktails, awesome isn't it ?
+            </p>
+            <a href="http://b4nanajuice.pythonanywhere.com/confirm/{{ token }}" style="width: 100%;">
+                <button style="color: #FCFFFF; background: rgb(5, 160, 13); width: 50%; transform: translateX(50%); outline: none; border: none; border-radius: 10px; padding: 15px; font-size: 18px; margin: 20px 0px;">
+                    Confirm the mail
+                </button>
+            </a>
+            <p style="color: #767C9B;">
+                You have 4 hours to confirm your account.    
+            </p>
+            <p style="color: #767C9B;">
+                See you soon on CocktailLib !
+            </p>
         </div>
 
-        <div>
-            {{ footer }}
+        <div style="color: #767C9B; width: 50%; margin: auto; padding-top: 50px;">
+            If you haven't created your account on b4nanajuice.pythonanywhere.com, just ignore this mail.
         </div>
     </body>
 </html>
