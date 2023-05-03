@@ -1,6 +1,8 @@
 from flask import request, session, redirect, url_for, render_template
 import sqlite3, hashlib
 import threading, time
+from mails import send_mail, generate_template
+import config
 
 def login():
     
@@ -124,12 +126,10 @@ def register():
             session['error'] = "The mail is not available for the moment."
             return render_template("auth/register.html", **locals())
 
-        # SEE TO SEND A CONFIRMATION EMAIL
-
         # hash the password
         m: hashlib._Hash = hashlib.sha256()
         m.update(password.encode())
-        password = m.hexdigest()
+        password: str = m.hexdigest()
 
         # hash the username (this will be the token)
         m.update(username.encode())
@@ -138,8 +138,15 @@ def register():
         # put the name, mail and hashed password into the database
         cur.execute("INSERT INTO temp VALUES (?, ?, ?, ?)", (hashed_username, username, mail, password))
 
-        # create a new table for the user
-        print(f"http://localhost:5500/confirm/{hashed_username}")
+        # send a confirmation mail
+        confirm_mail: str = generate_template(
+            "confirm_mail", 
+            {
+                "token": hashed_username,
+                "url": config.URL
+            })
+        
+        send_mail([mail], "Confirmation mail", confirm_mail)
 
         # make the url not usable after a delay
         threading.Thread(target = delete_temp_user, args = (hashed_username, )).start()
