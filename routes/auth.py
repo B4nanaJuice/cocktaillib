@@ -8,8 +8,6 @@ def login():
     if request.method == 'GET':
         # is user is connected: redirect to his page
         if "name" in session:
-            session.pop('info', default = None)
-            session.pop('error', default = None)
             return redirect(url_for('home'))
         
         # else: show the login form
@@ -18,10 +16,6 @@ def login():
 
     # if the form is sent, get inputs information
     elif request.method == 'POST':
-
-        # remove error message from the session
-        session.pop('info', default = None)
-        session.pop('error', default = None)
         
         # get inputs information
         username: str = request.form["name"]
@@ -59,9 +53,6 @@ def lougout():
     # if the user is not connected
     if "name" not in session:
         return redirect(url_for("login"))
-    
-    # remove name from session
-    session.pop('name', default = None)
 
     # redirect to login page saying you're disconnected from your account
     session['info'] = "You successfully logged out."
@@ -191,7 +182,6 @@ def confirm(token: str):
 
     # if the temp user is not found, return the login page and an error saying the token is unknown
     if user is None:
-        session.pop('info', default = None)
         session["error"] = "The given token is unknown."
         return redirect(url_for("login"))
 
@@ -206,6 +196,5 @@ def confirm(token: str):
     con.close()
 
     # return to login page with message saying that the account was verified
-    session.pop('error', default = None)
     session["info"] = "Your account has been verified successfully ! You can now login."
     return redirect(url_for("login"))

@@ -5,3 +5,7 @@ cocktails.db
 cocktails.json
 someHelp.md
 config.py
+__pycache__/
+routes/__pycache__/
+classes/__pycache__/
+classes/__init__.py
