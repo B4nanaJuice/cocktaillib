@@ -10,6 +10,7 @@ from classes.Ingredient import Ingredient
 
 import routes.home
 import routes.auth
+import routes.account
 
 import config
 
@@ -39,6 +40,8 @@ app.add_url_rule("/login", view_func = routes.auth.login, methods = ['GET', 'POS
 app.add_url_rule("/logout", view_func = routes.auth.lougout)
 app.add_url_rule("/register", view_func = routes.auth.register, methods = ['GET', 'POST'])
 app.add_url_rule("/confirm/<string:token>", view_func = routes.auth.confirm)
+
+app.add_url_rule("/account", view_func = routes.account.account)
 
 @app.route("/newCocktail", methods = ['GET', 'POST'])
 def newCocktail():
