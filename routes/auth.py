@@ -58,6 +58,7 @@ def lougout():
 
     # redirect to login page saying you're disconnected from your account
     session['info'] = "You successfully logged out."
+    session.pop('name', default = None)
     return redirect(url_for("login"))
 
 def register():
