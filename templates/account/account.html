@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'css/account.css') }}">
+  <title>CocktailLib | Account</title>
+{% endblock %}
+
+{% block main %}
+  <!-- Header (title) -->
+  <h1 class="header">Account</h1>
+
+  <div class="roundCorner darkBackground">
+
+    <p class="text">Account here---</p>
+    
+  </div>
+{% endblock %}
+
+{% block main2 %}
+  <!-- Button to go back to the home page -->
+  <a href="{{ url_for('home') }}">
+    <button class="special">
+        Return home
+    </button>
+  </a>
+{% endblock %}
