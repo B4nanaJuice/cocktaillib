@@ -39,10 +39,6 @@ form div input {
     transition: color .5s ease;
 }
 
-.header {
-    margin-bottom: 75px;
-}
-
 .roundCorner {
     padding-top: 35px;
 }
