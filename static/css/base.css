@@ -97,6 +97,36 @@ button:hover {
     cursor: pointer;
 }
 
+form {
+    width: 80%;
+    margin: auto;
+}
+
+form div {
+    width: 100%;
+    margin: 10px 0px;
+}
+
+form label {
+    color: var(---gray);
+    margin: 15px 0px 5px 5px;
+    font-size: larger;
+    width: 30%;
+    margin-right: 5%;
+    display: inline-block;
+    text-align: right;
+}
+
+form div input, form input {
+    width: 60%;
+    margin: auto;
+}
+
+hr {
+    width: 70%;
+    margin: 50px auto;
+}
+
 /* Classes that are on every page */
 .main {
     width: 60%;

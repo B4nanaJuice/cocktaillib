@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block head %}
-  <link rel="stylesheet" href="{{ url_for('static', filename = 'css/account.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'css/login.css') }}">
   <title>CocktailLib | Account</title>
 {% endblock %}
 
@@ -11,7 +11,74 @@
 
   <div class="roundCorner darkBackground">
 
-    <p class="text">Account here---</p>
+    <div class="mail">
+      <p class="text">username: {{ user[0] }}</p>
+      <p class="text">mail: {{ user[1] }}</p>
+
+      <!-- Form to change the mail -->
+      <form action="changeMail" method="post">
+
+        <p class="subheader">Modify your mail</p>
+
+        <div>
+          <label for="new_mail">Mail</label>
+          <input type="text" name="new_mail" required>
+        </div>
+
+        <div>
+          <label for="password">Password</label>
+          <input type="password" name="password" required>
+        </div>
+
+        <input type="submit">
+
+      </form>
+
+      <hr>
+
+      <!-- Form to change the password (with checks) -->
+      <form action="changePassword" method="post">
+
+        <p class="subheader">Modify your password</p>
+
+        <div>
+          <label for="new_mail">Password</label>
+          <input type="password" name="old_password" required>
+        </div>
+
+        <div>
+          <label for="password">New password</label>
+          <input type="password" name="password" oninput="checkPassword()" required>
+        </div>
+
+        <!-- Checks for the password (more in the js/passwordCheck.js file) -->
+        <div class="checks">
+          <p>Your password must:</p>
+          <ul>
+              <li class="has-uppercase">Contain 1 uppercase</li>
+              <li class="has-lowercase">Contain 1 lowercase</li>
+              <li class="has-number">Contain 1 number</li>
+              <li class="has-special-char">Contain 1 special character</li>
+              <li class="password-length">Be 8 characters long</li>
+          </ul>
+        </div>
+
+        <div>
+          <label for="password">New password (repeat)</label>
+          <input type="password" name="password-repeat" oninput="checkPassword()" required>
+        </div>
+
+        <!-- Second password check (more in the js/passwordCheck.js file) -->
+        <div class="checks">
+          <ul>
+              <li class="match">Both passwords must match</li>
+          </ul>
+        </div>
+
+        <input type="submit" name="submit" class="disabled" disabled>
+
+      </form>
+    </div>
     
   </div>
 {% endblock %}
@@ -23,4 +90,8 @@
         Return home
     </button>
   </a>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ url_for('static', filename = 'js/passwordCheck.js') }}"></script>
 {% endblock %}
