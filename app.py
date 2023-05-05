@@ -42,6 +42,7 @@ app.add_url_rule("/register", view_func = routes.auth.register, methods = ['GET'
 app.add_url_rule("/confirm/<string:token>", view_func = routes.auth.confirm)
 
 app.add_url_rule("/account", view_func = routes.account.account)
+app.add_url_rule("/changeMail", view_func = routes.account.change_mail, methods = ['POST'])
 
 @app.route("/newCocktail", methods = ['GET', 'POST'])
 def newCocktail():
