@@ -1,17 +1,17 @@
-function check() {
+function checkPassword() {
     // Get all check divs
     uppercase = document.querySelector(".has-uppercase")
     lowercase = document.querySelector(".has-lowercase")
     number = document.querySelector(".has-number")
     special_char = document.querySelector(".has-special-char")
-    length = document.querySelector(".length")
+    length = document.querySelector(".password-length")
 
     match = document.querySelector(".match")
-    password = document.getElementsByName("password")[0].value
-    password_repeat = document.getElementsByName("password-repeat")[0].value
+    password = document.getElementsByName("password")[document.getElementsByName("password").length - 1].value
+    password_repeat = document.getElementsByName("password-repeat")[document.getElementsByName("password-repeat").length - 1].value
 
     // Get submit button
-    submit = document.getElementsByName("submit")[0]
+    submit = document.getElementsByName("submit")[document.getElementsByName("submit").length - 1]
 
     console.log(password_repeat)
 
@@ -44,6 +44,6 @@ function check() {
         submit.classList.remove("disabled")
     }
     
-    submit.disabled = conditions.includes(false) ? true : false
+    submit.disabled = conditions.includes(false) && checkUsername()
 
 }
